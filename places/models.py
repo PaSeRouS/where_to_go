@@ -6,6 +6,11 @@ class Place(models.Model):
         max_length=100
     )
 
+    title_id = models.CharField(
+        "Уникальный идентификатор",
+        max_length=100
+    )
+
     description_short = models.CharField(
         "Короткое описание",
         max_length=300
