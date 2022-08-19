@@ -1,0 +1,6 @@
+dj_database_url==1.0.0
+django==4.1
+django-admin-sortable2==2.1.2
+django-tinymce==3.4.0
+environs==9.5.0
+pillow==9.2.0
