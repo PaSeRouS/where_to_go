@@ -38,7 +38,8 @@ class Image(models.Model):
 
     image_id = models.IntegerField(
         "Позиция",
-        default=0
+        default=0,
+        db_index=True
     )
 
     place = models.ForeignKey(
@@ -47,6 +48,9 @@ class Image(models.Model):
         related_name='images',
         on_delete=models.CASCADE
     )
+
+    class Meta:
+        ordering = ["image_id"]
 
     def __str__(self):
         return f"{self.place}, изображение №{self.image_id}"
