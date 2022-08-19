@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 class Place(models.Model):
     title = models.CharField(
@@ -16,7 +17,7 @@ class Place(models.Model):
         max_length=300
     )
 
-    description_long = models.TextField(
+    description_long = HTMLField(
         "Подробное описание"
     )
 
