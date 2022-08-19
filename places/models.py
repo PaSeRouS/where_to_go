@@ -32,12 +32,13 @@ class Place(models.Model):
         return self.title
 
 class Image(models.Model):
-    image_id = models.IntegerField(
-        "Номер по порядку"
-    )
-
     image = models.ImageField(
         "Картинка"
+    )
+
+    image_id = models.IntegerField(
+        "Позиция",
+        default=0
     )
 
     place = models.ForeignKey(
