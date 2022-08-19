@@ -23,7 +23,6 @@ pip install -r requirements.txt
 Внутри вашего файла `.env` ужно установить следующие переменные
 ```
 SECRET_KEY=Специальный токен вашего проекта Django. Пример: django-insecure-hifbduh&ghvew4y8329h_bdsuwno2j98weu89djj90
-MEDIA_ROOT={путь к папке с проектом}/media Пример: C:\where_to_go\media
 DEBUG=False
 ALLOWED_HOSTS=[] - Список имён сайтов, кототрые будут доступны для проекта. Пример: http://127.0.0.1:8000/
 ```
