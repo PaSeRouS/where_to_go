@@ -36,6 +36,16 @@ python3 manage.py migrate
 python3 manage.py createsuperuser
 ```
 
+### Команда load_place
+
+У проекта есть команда load_place, которая позволяет загружать новые места в базу данных.
+
+```
+python manage.py load_place http://адрес/файла.json
+```
+
+Пример [файла](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе%20Bizone.json).
+
 ## Запуск
 
 Запустите ваш проект следующей командой
