@@ -44,6 +44,24 @@ python3 manage.py createsuperuser
 python manage.py load_place http://адрес/файла.json
 ```
 
+JSON-файл должен быть следующей структуры
+
+``` JavaScript
+{
+    "title": "Название места",
+    "imgs": [
+        "https://ссылка/на/изображение.jpg",
+        ...
+    ],
+    "description_short": "Краткое описание нового места",
+    "description_long": "Подробное описание добавляемого места",
+    "coordinates": {
+        "lng": "долгота",
+        "lat": "широта"
+    }
+}
+```
+
 Пример [файла](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе%20Bizone.json).
 
 ## Запуск
