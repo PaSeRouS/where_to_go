@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from places.models import Image, Place
-from where_to_go import settings
 
 def show_index(request):
     places_GeoJson = {
@@ -13,8 +12,6 @@ def show_index(request):
     }
 
     for place in Place.objects.all():
-        place_json = serialize_place(place)
-
         place_feature = {
             'type': 'Feature',
             'geometry': {
