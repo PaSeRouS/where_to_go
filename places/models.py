@@ -1,19 +1,21 @@
 from django.db import models
 from tinymce.models import HTMLField
 
+
 class Place(models.Model):
     title = models.CharField(
         "Название места",
         max_length=100
     )
 
-    description_short = models.CharField(
+    description_short = models.TextField(
         "Короткое описание",
-        max_length=300
+        blank=True
     )
 
     description_long = HTMLField(
-        "Подробное описание"
+        "Подробное описание",
+        blank=True
     )
 
     longitude = models.FloatField(
@@ -27,15 +29,15 @@ class Place(models.Model):
     def __str__(self):
         return self.title
 
+
 class Image(models.Model):
     image = models.ImageField(
         "Картинка"
     )
 
-    image_id = models.IntegerField(
+    position_id = models.IntegerField(
         "Позиция",
-        default=0,
-        db_index=True
+        default=0
     )
 
     place = models.ForeignKey(
@@ -46,7 +48,7 @@ class Image(models.Model):
     )
 
     class Meta:
-        ordering = ["image_id"]
+        ordering = ["position_id"]
 
     def __str__(self):
         return f"{self.place}, изображение №{self.image_id}"

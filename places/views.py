@@ -1,18 +1,17 @@
-
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from places.models import Image, Place
 
+
 def show_index(request):
-    places_GeoJson = {
+    place_info = {
         'type': 'FeatureCollection',
         'features': []
     }
 
-    for place in Place.objects.all():
-        place_feature = {
+    place_info['features'] = [{
             'type': 'Feature',
             'geometry': {
                 'type': 'Point',
@@ -21,13 +20,16 @@ def show_index(request):
             'properties': {
                 'title': place.title,
                 'placeId': place.title,
-                'detailsUrl': reverse('place_id', kwargs={'place_id':place.id})
+                'detailsUrl': reverse(
+                    'place_id',
+                    kwargs={
+                        'place_id': place.id
+                    }
+                )
             }
-        }
-        places_GeoJson['features'].append(place_feature)
+        } for place in Place.objects.all()]
 
-
-    context = {'places': places_GeoJson}
+    context = {'places': place_info}
 
     return render(request, 'index.html', context)
 
@@ -38,21 +40,17 @@ def show_place(request, place_id):
     place_json = serialize_place(place)
 
     return JsonResponse(
-        place_json, 
-        safe=False, 
+        place_json,
+        safe=False,
         json_dumps_params={
             'ensure_ascii': False,
             'indent': 2
         }
     )
 
+
 def serialize_place(place):
-    images = Image.objects.filter(place=place)
-
-    imgs = []
-
-    for image in images:
-        imgs.append(image.image.url)
+    imgs = [image.image.url for image in place.images.all()]
 
     place_json = {
         "title": place.title,

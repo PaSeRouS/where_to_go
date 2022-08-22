@@ -3,7 +3,8 @@ from io import BytesIO
 
 import requests
 from django.core.files.images import ImageFile
-from django.core.management.base import BaseCommand, CommandError, CommandParser
+from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import CommandParser
 
 from places.models import Place
 
@@ -11,11 +12,9 @@ from places.models import Place
 class Command(BaseCommand):
     help = 'Загрузка нового интересного места по ссылке'
 
-
     def add_arguments(self, parser: CommandParser):
         parser.add_argument('url')
 
-    
     def handle(self, *args, **options):
         response = requests.get(options['url'])
         response.raise_for_status()

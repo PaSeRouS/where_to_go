@@ -8,7 +8,7 @@ from .models import Image, Place
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 0
-    fields = ('image', 'get_preview', 'image_id')
+    fields = ('image', 'get_preview', 'position_id')
 
     readonly_fields = ['get_preview']
 
@@ -17,10 +17,10 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
         prop_width = prop_height * obj.image.width / obj.image.height
 
         return format_html('<img src="{}" width="{}" height={} />',
-            obj.image.url,
-            prop_width,
-            prop_height,
-        )
+                           obj.image.url,
+                           prop_width,
+                           prop_height
+                           )
 
 
 @admin.register(Image)
