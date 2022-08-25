@@ -35,7 +35,7 @@ class Image(models.Model):
         "Картинка"
     )
 
-    position_id = models.IntegerField(
+    position = models.IntegerField(
         "Позиция",
         default=0
     )
@@ -48,7 +48,7 @@ class Image(models.Model):
     )
 
     class Meta:
-        ordering = ["position_id"]
+        ordering = ["position"]
 
     def __str__(self):
-        return f"{self.place}, изображение №{self.image_id}"
+        return f"{self.place}, изображение №{self.position}"

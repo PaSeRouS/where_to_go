@@ -8,7 +8,7 @@ from .models import Image, Place
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 0
-    fields = ('image', 'get_preview', 'position_id')
+    fields = ('image', 'get_preview', 'position')
 
     readonly_fields = ['get_preview']
 

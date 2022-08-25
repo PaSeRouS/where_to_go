@@ -2,32 +2,32 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from places.models import Image, Place
+from places.models import Place
 
 
 def show_index(request):
+    features = [{
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [place.longitude, place.latitude]
+        },
+        'properties': {
+            'title': place.title,
+            'placeId': place.title,
+            'detailsUrl': reverse(
+                'place_id',
+                kwargs={
+                    'place_id': place.id
+                }
+            )
+        }
+    } for place in Place.objects.all()]
+
     place_info = {
         'type': 'FeatureCollection',
-        'features': []
+        'features': features
     }
-
-    place_info['features'] = [{
-            'type': 'Feature',
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [place.longitude, place.latitude]
-            },
-            'properties': {
-                'title': place.title,
-                'placeId': place.title,
-                'detailsUrl': reverse(
-                    'place_id',
-                    kwargs={
-                        'place_id': place.id
-                    }
-                )
-            }
-        } for place in Place.objects.all()]
 
     context = {'places': place_info}
 
