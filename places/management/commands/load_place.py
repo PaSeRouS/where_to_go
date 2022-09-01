@@ -16,7 +16,7 @@ def get_or_create_place(place_data):
 
     if not title:
         raise CommandError('В загружаемом файле нет названия места')
-        
+
     if not place_data.get('coordinates'):
         raise CommandError('В загружаемом файле нет координат места')
 
@@ -75,7 +75,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser: CommandParser):
         parser.add_argument('url')
-
 
     def handle(self, *args, **options):
         response = requests.get(options['url'])
