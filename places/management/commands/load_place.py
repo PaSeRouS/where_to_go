@@ -1,4 +1,3 @@
-import os
 from io import BytesIO
 from urllib.parse import urlsplit
 
@@ -8,7 +7,6 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.management.base import CommandParser
 
 from places.models import Image, Place
-from where_to_go import settings
 
 
 def get_or_create_place(place_data):
